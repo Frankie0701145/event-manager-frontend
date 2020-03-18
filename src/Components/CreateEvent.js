@@ -3,13 +3,30 @@ import './CreateEvent.css'
 import Cookie from 'js-cookie';
 
 class CreateEvent extends Component{
+    submit = (e)=>{
+        e.preventDefault()
+        console.log(e.target);
+    }
+    imageViewer = (event)=>{
+        // console.log(e.target.files)
+        let filesNo = event.target.files.length;
+        let carouselImg = document.getElementsByClassName('carousel-img')
+        
+        for(let x =0; x < filesNo; x++){
+            carouselImg[x].src = URL.createObjectURL(event.target.files[x]);
+        }
+    }
+    
+    constructor(props){
+        super(props)
+    }
     render(){
         return(
             <div className='container'>
                 
                 <div className='row' id='Wrapper'>
 
-                    <form className='col s12 l9 offset-l1'>
+                    <form className='col s12 l9 offset-l1' onSubmit={this.submit}>
 
                         <div className="row">
 
@@ -24,15 +41,7 @@ class CreateEvent extends Component{
                             </div>
 
                         </div>
-                        {/* <div class="carousel">
-                            <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"/></a>
-                            <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"/></a>
-                            <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"/></a>
-                            <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"/></a>
-                            <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"/></a>
-                        </div> */}
-                       
-
+                        
                         <div className='row'>
                             <div className="input-field col s12">
                                 <textarea id="description" className="materialize-textarea" data-length="120"></textarea>
@@ -40,10 +49,17 @@ class CreateEvent extends Component{
                             </div>
                         </div>
 
+                        <div className="carousel">
+                                <a className="carousel-item" href="#one!"><img src="" className="carousel-img"/></a>
+                                <a className="carousel-item" href="#two!"><img src="" className="carousel-img"/></a>
+                                <a className="carousel-item" href="#three!"><img src="" className="carousel-img"/></a>
+                                <a className="carousel-item" href="#four!"><img src="" className="carousel-img"/></a>
+                                <a className="carousel-item" href="#five!"><img src="" className="carousel-img"/></a>
+                        </div>
                         <div className="file-field input-field">
                             <div className="btn red darken-1">
                                 <span>File</span>
-                                <input type="file" multiple/>
+                                <input type="file" multiple name="pictures[]" onChange={this.imageViewer} accept="image/png, image/jpeg"/>
                             </div>
                            
                             <div className="file-path-wrapper">
