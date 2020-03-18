@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import './CreateEvent.css'
+import Cookie from 'js-cookie';
 
 class CreateEvent extends Component{
     render(){
@@ -23,28 +24,32 @@ class CreateEvent extends Component{
                             </div>
 
                         </div>
-                        <div class="carousel">
+                        {/* <div class="carousel">
                             <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"/></a>
                             <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"/></a>
                             <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"/></a>
                             <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"/></a>
                             <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"/></a>
-                        </div>
-                        <div class="file-field input-field">
-                            <div class="btn amber darken-4">
-                                <span>File</span>
-                                <input type="file" multiple/>
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text" placeholder="Upload one or more files"/>
-                            </div>
-                        </div>
+                        </div> */}
+                       
 
                         <div className='row'>
                             <div className="input-field col s12">
                                 <textarea id="description" className="materialize-textarea" data-length="120"></textarea>
                                 <label htmlFor="description">Description</label>
                             </div>
+                        </div>
+
+                        <div className="file-field input-field">
+                            <div className="btn red darken-1">
+                                <span>File</span>
+                                <input type="file" multiple/>
+                            </div>
+                           
+                            <div className="file-path-wrapper">
+                                <input className="file-path validate" type="text" placeholder="Upload one or more files"/>
+                            </div>
+                            
                         </div>
 
                         <div className="row">
@@ -72,8 +77,8 @@ class CreateEvent extends Component{
                             </div>
                         </div>
                         <div className='row center-align'>
-                            <button class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Submit
-                                <i class="material-icons right">send</i>
+                            <button className="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Submit
+                                <i className="material-icons right">send</i>
                             </button>
                         </div>
                     </form>
@@ -81,6 +86,11 @@ class CreateEvent extends Component{
                 </div>
             </div>
         )
+    }
+    componentDidMount(){
+         if(Cookie.get('accessToken')===undefined){
+              this.props.history.push('/login');
+         }
     }
 }
 
