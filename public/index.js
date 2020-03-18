@@ -17,6 +17,5 @@ document.addEventListener('DOMContentLoaded', function() {
     var endTimePicker = document.getElementById('end-time')
     var endTimePickerInstance = M.Timepicker.init(endTimePicker, {});
 
-    var elems = document.querySelectorAll('.pushpin');
-    var instances = M.Pushpin.init(elems, {});
+ 
 });

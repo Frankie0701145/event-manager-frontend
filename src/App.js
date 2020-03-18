@@ -10,8 +10,10 @@ function App() {
         
         <Router>
             <Navbar/>
-            <Route path='/create_event' component={CreateEvent}></Route>  
-            <Route path='/' component={Login}></Route>    
+            <Switch>
+              <Route path='/create_event' component={CreateEvent}></Route>  
+              <Route path='/' component={Login}></Route> 
+            </Switch>   
         </Router>  
     </div>
   );
