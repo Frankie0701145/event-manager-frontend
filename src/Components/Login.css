@@ -1,0 +1,20 @@
+#loginWrapper{
+   height: 89.6vh;
+   margin: 0 auto
+}
+#loginForm{
+   margin: auto;
+   
+}
+
+#companyWrapper{
+    height: 89.6vh;
+    background: url('../stil-ck0i9Dnjtj0-unsplash.jpg') ;
+    background-size: cover;
+    margin-right: 6em;  
+}
+
+#wrapper{ 
+      
+   height: 86vh;
+}
