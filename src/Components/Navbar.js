@@ -1,11 +1,11 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
-
+import './Navbar.css';
 const Navbar = (props)=>{
     return(
         <div>
 
-            <nav className="white">
+            <nav className="white pushpin">
                 <div className= "container">
                     <div className="nav-wrapper">
                         <a href="#!" className="brand-logo black-text">Fly Events Inc</a>
