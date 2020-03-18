@@ -44,7 +44,7 @@ class App extends Component {
               <Navbar {...this.state} authenticate={this.authenticate}/>
               <Switch>
                 <Route path='/create_event' component={
-                      (props)=><CreateEvent {...props} {...this.state} fetching={this.fetching}/>
+                      (props)=><CreateEvent {...props} {...this.state} fetching={this.fetching} addErrors={this.addErrors} removeErrors={this.removeErrors}/>
                   }></Route>  
                   
                 <Route path='/' component={

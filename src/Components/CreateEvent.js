@@ -3,6 +3,7 @@ import './CreateEvent.css'
 import Cookie from 'js-cookie';
 import axios from 'axios';
 import moment from 'moment';
+import ErrorComponent from './Errors';
 class CreateEvent extends Component{
     submit = (e)=>{
         e.preventDefault()
@@ -16,7 +17,7 @@ class CreateEvent extends Component{
         let startTime = e.target.startTime.value;
         let endDate = e.target.endDate.value;
         let endTime = e.target.endTime.value;
-
+        this.props.fetching(true)
 
         let startDateTime = moment(startDate + " " + startTime).format();
         let endDateTime = moment(endDate + " " +endTime ).format();
@@ -39,9 +40,15 @@ class CreateEvent extends Component{
         // console.log(formData.get('pictures'))
         
         axios.post('events/create',formData, config).then((response)=>{
-                console.log(response)
+                
+            this.props.fetching(false);
+            window.M.toast({html: 'Event Created Successful', classes: "light-blue darken-4"});
+            this.props.history.push('/create_event');
         }).catch((err)=>{
+            this.props.fetching(false);
             console.log(err);
+            let error = "An error has occurred";
+            this.props.addErrors(error)
         })
     }
     imageViewer = (event)=>{
@@ -69,7 +76,16 @@ class CreateEvent extends Component{
                 <div className='row' id='Wrapper'>
 
                     <form className='col s12 l9 offset-l1' onSubmit={this.submit}>
-
+                          {/* Add the preloader if it is loading*/}
+                        {
+                          this.props.loading===true?
+                            <div className="progress" data-testid="progress">
+                                <div className="indeterminate"></div>
+                            </div>:
+                            ""
+                        }
+                            {/* The error Handling */}
+                        {this.props.errors.length> 0 ? <ErrorComponent errors={this.props.errors} removeErrors={this.props.removeErrors}/>: ""}
                         <div className="row">
 
                             <div className="input-field col s12 l6">
@@ -92,11 +108,11 @@ class CreateEvent extends Component{
                         </div>
 
                         <div className="carousel">
-                                <a className="carousel-item" href="#one!"><img src="" className="carousel-img"/></a>
-                                <a className="carousel-item" href="#two!"><img src="" className="carousel-img"/></a>
-                                <a className="carousel-item" href="#three!"><img src="" className="carousel-img"/></a>
-                                <a className="carousel-item" href="#four!"><img src="" className="carousel-img"/></a>
-                                <a className="carousel-item" href="#five!"><img src="" className="carousel-img"/></a>
+                                <a className="carousel-item" href="#one!"><img src="" className="carousel-img" alt=""/></a>
+                                <a className="carousel-item" href="#two!"><img src="" className="carousel-img" alt=""/></a>
+                                <a className="carousel-item" href="#three!"><img src="" className="carousel-img" alt=""/></a>
+                                <a className="carousel-item" href="#four!"><img src="" className="carousel-img" alt=""/></a>
+                                <a className="carousel-item" href="#five!"><img src="" className="carousel-img" alt=""/></a>
                         </div>
                         <div className="file-field input-field">
                             <div className="btn red darken-1">
@@ -112,12 +128,12 @@ class CreateEvent extends Component{
 
                         <div className="row">
                             <div className='input-field col s6'>
-                                 <input id='start-date' type="text" className="datepicker" name="startDate"/>
+                                 <input id='start-date' type="text" className="datepicker" name="startDate" required/>
                                  <label htmlFor="start-date" >Start Date</label>
                             </div>
 
                             <div className='input-field col s6'>
-                                 <input id='start-time' type="text" className="timepicker" name="startTime"/>
+                                 <input id='start-time' type="text" className="timepicker" name="startTime" required/>
                                 <label htmlFor="start-time" >Start Time</label>
                             </div>
 
@@ -125,17 +141,18 @@ class CreateEvent extends Component{
 
                         <div className="row">
                             <div className='input-field col s6'>
-                                 <input id='end-date' type="text" className="datepicker" name="endDate"/>
+                                 <input id='end-date' type="text" className="datepicker" name="endDate" required/>
                                  <label htmlFor="end-date" >End Date</label>
                             </div>
 
                             <div className='input-field col s6'>
-                                 <input id='end-time' type="text" className="timepicker" name="endTime"/>
+                                 <input id='end-time' type="text" className="timepicker" name="endTime" required/>
                                 <label htmlFor="end-time" >End Time</label>
                             </div>
                         </div>
                         <div className='row center-align'>
-                            <button className="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Submit
+                            <button className="btn waves-effect waves-light light-blue darken-4" type="submit" name="action" disabled={this.props.loading}>
+                                Submit
                                 <i className="material-icons right">send</i>
                             </button>
                         </div>
