@@ -21,7 +21,7 @@ class Navbar extends Component{
                             <a href="#!" id="logo" className="brand-logo" style={{backgroundColor: "#00134e"}}>Fly Events Inc</a>
                             <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons black-text">menu</i></a>
                             <ul className="right hide-on-med-and-down">
-                                <li><a href="#" className='black-text'>Events</a></li>
+                                <li><NavLink to='/events' className='black-text'>Events</NavLink></li>
                                 <li><NavLink  to="/create_event" className='black-text'>Create Events</NavLink></li>
                                 {   this.props.loggedIn===true?
                                     <li><NavLink to="#" className='black-text' onClick={this.logout}>Logout</NavLink></li>:
@@ -30,7 +30,7 @@ class Navbar extends Component{
                             </ul>
                             
                             <ul className="sidenav" id="mobile-demo">
-                                <li><a href="#" className='black-text'>Events</a></li>
+                                <li><NavLink to="/events" className='black-text'>Events</NavLink></li>
                                 <li><NavLink  to="/create_event" className='black-text'>Create Events</NavLink></li>
                                 {   
                                      this.props.loggedIn===true?

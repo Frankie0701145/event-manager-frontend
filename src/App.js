@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Navbar  from "./Components/Navbar";
+import Events from "./Components/Events";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import CreateEvent from './Components/CreateEvent'
 import Login from './Components/Login'
@@ -43,13 +44,16 @@ class App extends Component {
           <Router>
               <Navbar {...this.state} authenticate={this.authenticate}/>
               <Switch>
-                <Route path='/create_event' component={
+                <Route exact path='/create_event' component={
                       (props)=><CreateEvent {...props} {...this.state} fetching={this.fetching} addErrors={this.addErrors} removeErrors={this.removeErrors}/>
                   }></Route>  
                   
-                <Route path='/' component={
+                <Route exact path='/' component={
                       (props)=><Login {...props} {...this.state} fetching={this.fetching} authenticate={this.authenticate} addErrors={this.addErrors} removeErrors={this.removeErrors}/>
                   }></Route> 
+                <Route exact path='/events' component={
+                    (props)=><Events {...props}></Events>
+                }></Route>
               </Switch>   
           </Router>  
       </div>
