@@ -23,7 +23,7 @@ class Login extends Component{
             let data = response.data;
             this.props.authenticate(true)
             Cookie.set("accessToken", data.accessToken)
-            this.props.history.push('/create_event')
+            this.props.history.push('/')
             window.M.toast({html: 'Login Successful!', classes: "light-blue darken-4"});
         }).catch((err)=>{
             this.props.fetching(false)
@@ -90,7 +90,7 @@ class Login extends Component{
     }
    componentDidMount(){
         if(Cookie.get('accessToken')!==undefined){
-             this.props.history.push('/create_event');
+             this.props.history.push('/');
         }
    }
 }

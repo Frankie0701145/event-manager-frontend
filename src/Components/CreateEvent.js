@@ -43,7 +43,7 @@ class CreateEvent extends Component{
                 
             this.props.fetching(false);
             window.M.toast({html: 'Event Created Successful', classes: "light-blue darken-4"});
-            this.props.history.push('/create_event');
+            this.props.history.push('/events');
         }).catch((err)=>{
             this.props.fetching(false);
             console.log(err);
