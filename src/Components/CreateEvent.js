@@ -39,7 +39,7 @@ class CreateEvent extends Component{
         // formData.append('pictures[]',this.state.files)
         // console.log(formData.get('pictures'))
         
-        axios.post('events/create',formData, config).then((response)=>{
+        axios.post('api/events/create',formData, config).then((response)=>{
                 
             this.props.fetching(false);
             window.M.toast({html: 'Event Created Successful', classes: "light-blue darken-4"});

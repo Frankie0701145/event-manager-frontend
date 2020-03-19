@@ -134,7 +134,7 @@ class Events extends Component{
     }
     componentDidMount(){
         this._isMounted = true;
-        axios.get('/events/all').then((response)=>{
+        axios.get('api/events/all').then((response)=>{
             let events = response.data
             let state = {...this.state, events: events, filteredEvents: events}
             if(this._isMounted){

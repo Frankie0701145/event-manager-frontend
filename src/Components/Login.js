@@ -17,7 +17,7 @@ class Login extends Component{
         }
         this.props.fetching(true)
         
-        axios.post('/users/login', credentials).then((response)=>{  
+        axios.post('api/users/login', credentials).then((response)=>{  
             this.props.fetching(false)
             this.props.authenticate(true)
             let data = response.data;
@@ -38,7 +38,7 @@ class Login extends Component{
             <div className='row' id="wrapper">
 
                 <div className='col s0 l5 valign-wrapper hide-on-med-and-down' id="companyWrapper">
-                        
+                        ``
                 </div>
 
                 <div className='col s12 l6 valign-wrapper' id="loginWrapper">
