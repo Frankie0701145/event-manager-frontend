@@ -48,7 +48,7 @@ class App extends Component {
                       (props)=><CreateEvent {...props} {...this.state} fetching={this.fetching} addErrors={this.addErrors} removeErrors={this.removeErrors}/>
                   }></Route>  
                   
-                <Route exact path='/' component={
+                <Route exact path='/login' component={
                       (props)=><Login {...props} {...this.state} fetching={this.fetching} authenticate={this.authenticate} addErrors={this.addErrors} removeErrors={this.removeErrors}/>
                   }></Route> 
                 <Route exact path='/events' component={
