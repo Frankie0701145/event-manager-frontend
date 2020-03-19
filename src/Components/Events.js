@@ -128,7 +128,10 @@ class Events extends Component{
                 </div>  
             )
         }else{
-            return(<div>Welcome</div>)
+            return(
+                <div className='container center-align' style={{margin: "10px !important"}}>
+                    <h4>No Events For Now!</h4>
+                </div>)
         }
      
     }
