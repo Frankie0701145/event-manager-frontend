@@ -44,6 +44,10 @@ class Navbar extends Component{
             </div>
        );
    }
+   componentDidMount(){
+    var sidenavElements = document.querySelectorAll('.sidenav');
+    var instances = window.M.Sidenav.init(sidenavElements, {});
+   }
 }
 
 export default withRouter(Navbar);

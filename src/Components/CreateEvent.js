@@ -163,6 +163,25 @@ class CreateEvent extends Component{
         )
     }
     componentDidMount(){
+
+        var textArea = document.getElementById('description');
+        var textAreaInstance = window.M.CharacterCounter.init(textArea,{});
+    
+        var startDatePicker = document.getElementById('start-date');
+        var startDatePickerInstance = window.M.Datepicker.init(startDatePicker, {});
+    
+        var startTimePicker = document.getElementById('start-time')
+        var startTimePickerInstance = window.M.Timepicker.init(startTimePicker, {});
+        
+        var endDatePicker = document.getElementById('end-date');
+        var endDatePickerInstance = window.M.Datepicker.init(endDatePicker, {});
+    
+        var endTimePicker = document.getElementById('end-time')
+        var endTimePickerInstance = window.M.Timepicker.init(endTimePicker, {});
+    
+        var elems = document.querySelectorAll('.carousel');
+        var instances = window.M.Carousel.init(elems, {});
+
          if(Cookie.get('accessToken')===undefined){
               this.props.history.push('/login');
          }
