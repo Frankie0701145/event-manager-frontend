@@ -184,6 +184,7 @@ class CreateEvent extends Component{
 
          if(Cookie.get('accessToken')===undefined){
               this.props.history.push('/login');
+              window.M.toast({html: 'Login Please.', classes: "red darken-1"})
          }
     }
 }
